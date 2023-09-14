@@ -1,0 +1,62 @@
+.modal-body{
+  .head{
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $color-light-grey;
+    h3{
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21px;
+      font-family: $font-SF-medium-normal;
+    }
+
+    .btn-close{
+      padding: 2px 12px;
+      font-size: 24px;
+      font-family: $font-SF-Light-normal;
+    }
+  }
+
+  .body{
+    .custom-checkbox{
+      display: flex;
+      align-items: center;
+      .custom-control-label{
+        &:before{
+          top: 2px;
+          width: 16px;
+          height: 16px;
+          border: 1px solid $color-blue;
+        }
+        &:after{
+          top: 2px;
+        }
+      }
+    }
+
+    .btn-blue{
+      width: 100%;
+      color: $color-white;
+      &:hover{
+        color: $color-blue;
+        border: 2px solid $color-blue;
+      }
+    }
+
+    .custom-input-file{
+      border: 2px solid rgba(104, 125, 206, 0.33);
+      text-align: center;
+      .custom-input-file__label{
+        display: block !important;
+        img{
+          display: block;
+          margin: 20px auto;
+        }
+
+        .custom-input-file__button{
+          margin: 20px auto;
+        }
+      }
+    }
+  }
+}

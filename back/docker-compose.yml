@@ -1,0 +1,64 @@
+version: "3.7"
+services:
+  # Redis - result backend
+  redis:
+    image: redis:alpine
+  # RabbitMQ - queue
+  rabbit:
+    hostname: rabbit
+    image: rabbitmq:3-management
+    environment:
+      - DEFAULT_USER=admin
+      - DEFAULT_PASS=mypass
+    ports:
+      - "5672:5672"  
+      - "15672:15672"  # here, we can access rabbitmq management plugin
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.db
+  
+  # Django web server - celery master
+  web:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: web
+    command: sh ./run_web.sh
+    volumes:
+      - ./:/app
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+    ports:
+      - "8000:8000"
+    depends_on:
+        - db 
+        - redis
+    links:
+      - rabbit
+      - redis
+    env_file:
+      - ./.env
+
+  # Celery worker
+  worker:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh ./run_celery.sh
+    volumes:
+      - ./:/app
+    links:
+      - rabbit
+      - redis
+    depends_on:
+      - rabbit
+      - redis
+volumes:
+  postgres_data:
+  static_volume:
+  media_volume:

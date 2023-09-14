@@ -1,0 +1,101 @@
+@import "variables";
+@import "normalize";
+@import "components/header";
+@import "components/side-bar";
+@import "universal";
+@import "components/right-sidebar";
+@import "components/modal";
+@import "pages";
+@import "test";
+@import "media";
+@import "plyr";
+@import "jexcel/dist/jexcel.css";
+@import "jsuites/dist/jsuites.css";
+@import "vue-multiselect/dist/vue-multiselect.min.css";
+
+.page-enter-active, .page-leave-active, .layout-enter-active, .layout-leave-active {
+  transition: opacity .3s;
+}
+
+.page-enter, .page-leave-to, .layout-enter, .layout-leave-to /* .fade-leave-active below version 2.1.8 */
+{
+  opacity: 0;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -600px 0;
+  }
+
+  100% {
+    background-position: 600px 0;
+  }
+}
+
+.preloader {
+  background: #E7EBF0 linear-gradient(to right, #E7EBF0 0%, #F0F2F5 20%, #E7EBF0 40%, #E7EBF0 100%) no-repeat;
+  display: inline-block;
+  position: relative;
+
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeholderShimmer;
+  animation-timing-function: linear;
+}
+
+.b-pagination {
+  li {
+    margin-right: 8px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    button:active, button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    * {
+      height: 32px;
+      width: 32px;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      margin: 0 !important;
+      padding: 0 !important;
+      border-radius: 4px !important;
+      border-width: 2px !important;
+      border-style: solid !important;
+      color: #334D6E !important;
+      border-color: #F0F5FA !important;
+      background: #FFFFFF !important;
+      transition: all 0.3s;
+      cursor: pointer !important;
+    }
+
+    &.active * {
+      color: #109CF1 !important;
+      border-color: #109CF1 !important;
+      background: #FFFFFF !important;
+      cursor: default !important;
+    }
+
+    &.disabled * {
+      opacity: 0.5 !important;
+      color: #334D6E !important;
+      border-color: #90A0B7 !important;
+      background: #90A0B7 !important;
+      cursor: not-allowed !important;
+    }
+  }
+}

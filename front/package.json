@@ -1,0 +1,40 @@
+{
+  "name": "prosuit",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-private-methods": "^7.14.5",
+    "@nuxtjs/axios": "^5.12.0",
+    "@nuxtjs/dayjs": "^1.2.1",
+    "@vimeo/player": "^2.14.1",
+    "bootstrap": "^4.5.0",
+    "bootstrap-vue": "^2.15.0",
+    "jexcel": "^4.5.2",
+    "jspreadsheet-ce": "^4.7.3",
+    "lodash": "^4.17.20",
+    "nuxt": "^2.14.0",
+    "nuxt-sass-resources-loader": "^2.0.5",
+    "plyr": "^3.6.2",
+    "v-calendar": "^2.1.1",
+    "vue-awesome-countdown": "^1.1.4",
+    "vue-inputmask": "^0.2.1",
+    "vue-multiselect": "^2.1.6",
+    "vue-plyr": "^6.0.4",
+    "vue-toastification": "^1.7.11",
+    "vue-vimeo-player": "^0.1.1",
+    "vuejs-countdown-timer": "^2.1.3",
+    "vuelidate": "^0.7.6",
+    "yarn": "^1.22.18"
+  },
+  "devDependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "10.1.1"
+  }
+}

@@ -1,0 +1,159 @@
+.b-sidebar {
+  position: fixed;
+  height: 100%;
+  width: 320px;
+  background: $color-white;
+  box-shadow: 12px 0px 18px rgba(0, 0, 0, 0.06);
+  min-height: 100vh;
+  z-index: 5;
+  top: 0;
+  bottom: 0;
+
+
+  .sidebar-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /*  &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 330px;
+      bottom: 0;
+      width: 9999px;
+      background: $color-white;
+    }*/
+
+  .sidebar-head {
+    padding: 16px 24px;
+    border-bottom: 1px solid #EBEFF2;
+  }
+
+  .sidebar-body {
+    padding: 24px;
+
+    .profile {
+      margin-bottom: 22px;
+      color: #192A3E;
+      .avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        margin-right: 16px;
+        overflow: hidden;
+        background: #F0F5FA;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          /* width: 100%;
+           height: 100%;
+           object-fit: cover;*/
+        }
+      }
+
+      .text {
+        p {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 17px;
+          margin-bottom: 2px;
+          font-family: $font-SF-Semibold-normal;
+        }
+
+        span {
+          font-size: 12px;
+          line-height: 13px;
+          color: $color-grey;
+          letter-spacing: 0.01em;
+        }
+      }
+    }
+
+
+    .btn-blue, .btn-green {
+      width: 100%;
+    }
+
+    nav {
+      font-size: 14px;
+      line-height: 16px;
+      font-family: $font-SF-medium-normal;
+      letter-spacing: 0.01em;
+      margin: 30px 0;
+
+      a {
+        display: flex;
+        align-items: center;
+        color: $color-title;
+        margin-bottom: 22px;
+
+        path {
+          stroke: $color-text;
+        }
+
+        &:hover, &.exact-active-link {
+          color: $color-blue;
+
+          path {
+            stroke: $color-blue;
+          }
+        }
+
+        i {
+          margin-right: 16px;
+        }
+
+        &.library {
+          path {
+            stroke: transparent;
+            fill: $color-text;
+          }
+
+          &:hover {
+            path {
+              stroke: transparent;
+              fill: $color-blue;
+            }
+          }
+        }
+      }
+    }
+
+    hr {
+      margin-top: 16px;
+      margin-bottom: 22px;
+      border-top: 1px solid #C4C4C4;
+    }
+  }
+
+  .sidebar-footer {
+    padding: 16px 24px;
+
+    nav {
+      .gray-text {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        color: #90A0B7;
+      }
+      a {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 13px;
+        letter-spacing: 0.01em;
+        display: block;
+        font-family: $font-SF-Semibold-normal;
+        color: #109CF1;
+        margin-bottom: 16px;
+
+      }
+    }
+  }
+}

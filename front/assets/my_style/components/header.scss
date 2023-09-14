@@ -1,0 +1,70 @@
+header{
+  padding: 16px;
+  background: $color-white;
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  .lang{
+    margin-right: 22px;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.01em;
+    color: $color-light-grey;
+    i{
+      margin-right: 10px;
+    }
+
+    &:hover{
+      color: $color-text;
+    }
+  }
+  .notification{
+    margin-right: 22px;
+    position: relative;
+
+    span{
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #F7685B;
+      top: 4px;
+      right: -1px;
+    }
+  }
+
+  .btn{
+    &:hover{
+      path{
+        stroke: $color-text;
+      }
+    }
+  }
+
+  .toggle{
+    margin-right: 20px;
+    outline: none !important;
+    box-shadow: none;
+    border: none;
+    span{
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: $color-blue;
+      margin: 3px 0;
+    }
+    &:hover{
+      background: transparent;
+    }
+
+    &:focus,
+    &:active{
+      background: transparent;
+      outline: none !important;
+      box-shadow: none !important;
+      border: none;
+    }
+  }
+}
