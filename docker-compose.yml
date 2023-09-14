@@ -19,17 +19,23 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env.db
+
+  front:
+    restart: always
+    build:
+      context: ./front
+    image: node:12.22.12
+    volumes:
+      - "./front:/app"
   
-  # Django web server - celery master
+  # Django web server
   web:
     restart: always
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./back
     hostname: web
-    command: sh ./run_web.sh
     volumes:
-      - ./:/app
+      - ./back:/app
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     ports:
@@ -42,22 +48,6 @@ services:
       - redis
     env_file:
       - ./.env
-
-  # Celery worker
-  worker:
-    restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: sh ./run_celery.sh
-    volumes:
-      - ./:/app
-    links:
-      - rabbit
-      - redis
-    depends_on:
-      - rabbit
-      - redis
 volumes:
   postgres_data:
   static_volume:
