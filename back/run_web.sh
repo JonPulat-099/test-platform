@@ -1,11 +1,32 @@
 #!/bin/sh
+python3 manage.py makemigrations
+status=$?
+if [ $status -ne 0 ]; then
+  echo "Failed to makemigrations: $status"
+  exit $status
+fi
+echo "makemigrations ->  OK"
 
-# wait for PSQL server to start
-sleep 10
+python3 manage.py migrate
+status=$?
+if [ $status -ne 0 ]; then
+  echo "Failed to migrate: $status"
+  exit $status
+fi
+echo "migrate ->  OK"
 
-# prepare init migration
-su -m myuser -c "python manage.py makemigrations"
-# migrate db, so we have the latest db schema
-su -m myuser -c "python manage.py migrate"
-# start development server on public ip interface, on port 8000
-su -m myuser -c "python manage.py runserver 0.0.0.0:8000"
+python3 manage.py shell < add_user.py
+status=$?
+if [ $status -ne 0 ]; then
+  echo "Failed to add user: $status"
+  exit $status
+fi
+echo "add user ->  OK"
+
+python3 manage.py runserver 0.0.0.0:8000
+status=$?
+if [ $status -ne 0 ]; then
+  echo "Failed to runserver: $status"
+  exit $status
+fi
+echo "runserver ->  OK"
