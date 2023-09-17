@@ -24,18 +24,22 @@ services:
     restart: always
     build:
       context: ./front
-    image: node:12.22.12
+    image: node:12-alpine
+    ports:
+      - "3002:3002"
     volumes:
-      - "./front:/app"
+    - .:/app
+    - /app/node_modules
+    command: sh -c "npm run start"
   
   # Django web server
   web:
     restart: always
     build:
-      context: ./back
+      context: ./back/
     hostname: web
     volumes:
-      - ./back:/app
+      - ./:/app
       - static_volume:/home/app/web/staticfiles
       - media_volume:/home/app/web/mediafiles
     ports:
@@ -43,11 +47,14 @@ services:
     depends_on:
         - db 
         - redis
+        - front
     links:
       - rabbit
       - redis
+      - front
     env_file:
       - ./.env
+    command: sh ./run_web.sh
 volumes:
   postgres_data:
   static_volume:

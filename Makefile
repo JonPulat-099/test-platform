@@ -1,13 +1,18 @@
 run:
-	sudo docker-compose up -d --build
+	docker-compose up
+
 down:
-	sudo docker-compose down
+	docker-compose down
+
 build: 
 	make build-back;
 	make build-front;
 
 build-back:
-	docker-compose run --rm web bash -c "echo 'test'"
+	docker-compose run --rm web bash -c "pip install -r requirements.txt"
 
 build-front: 
 	docker-compose run --rm front node --version
+
+local-dev:
+	docker-compose run --rm web bash -c "cd docker/bash && run_web.sh"

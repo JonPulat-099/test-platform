@@ -1,9 +1,16 @@
+FROM node:12-alpine
+RUN apk update && apk upgrade
+RUN apk add bash
 
-FROM node:12.22.12
-WORKDIR /app
-ADD ./package.json .
-ADD ./package-lock.json .
-RUN npm ci
-RUN npm run build
+WORKDIR /var/www
 
-COPY . /app/
+RUN node --version
+RUN npm --version
+RUN npm i -g --silent pm2
+COPY package*.json ./
+
+
+RUN npm install && npm cache clean --force
+COPY  . .
+RUN npm run generate
+
