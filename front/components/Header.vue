@@ -1,11 +1,10 @@
 <template>
   <header>
     <div class="container-fluid">
-      <div class="row">
+      <div class="row align-items-center navbar">
         <div
-          class="col-md-12 d-flex align-items-center justify-content-between"
+          class="col-12 col-lg-6 d-flex align-items-center justify-content-between"
         >
-          <a href="#" class="logo"> </a>
           <div style="text-align: center">
             <h2>Tashkent International University<br /></h2>
             <h4>
@@ -15,6 +14,8 @@
               >
             </h4>
           </div>
+        </div>
+        <div class="col-12 col-lg-6 pt-4">
           <nav class="d-flex  align-items-center justify-content-end">
             <button class="btn logout ml-2" @click.prevent="logout">
               <span> Chiqish </span>
@@ -66,4 +67,33 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.navbar {
+  @media only screen and (max-width: 1024px) {
+    h2 {
+      font-size: 26px;
+      line-height: 1.2;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    h4 {
+      font-size: 20px;
+      line-height: 1.2;
+    }
+  }
+
+  @media only screen and (max-width: 576px) {
+    h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    h4 {
+      font-size: 16px;
+      line-height: 1.2;
+    }
+  }
+}
+</style>

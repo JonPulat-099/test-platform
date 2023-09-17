@@ -1,5 +1,5 @@
 .page {
-  padding: 80px 16px 80px 340px;
+  padding: 16px 16px 80px 16px;
 
   .block {
     background: $color-white;
@@ -590,7 +590,7 @@
 
 .materials {
   .items {
-    padding-right: 50px;
+    // padding-right: 50px;
 
     span {
       display: block;
@@ -611,12 +611,17 @@
       box-shadow: 0px 0px 2px rgba(194, 207, 224, 0.1), 0px 4px 8px rgba(194, 207, 224, 0.12);
       border-radius: 4px;
 
+      @media only screen and (max-width: 576px) {
+        padding: 15px 10px;
+      }
+
       p {
         font-weight: normal;
         font-size: 20px;
         line-height: 18px;
         max-width: 590px;
         padding-right: 15px;
+        margin-bottom: 10px;
       }
 
       .materials-ico {
@@ -898,6 +903,10 @@
   position: relative;
   background: #f8f8f8;
 
+  @media only screen and (max-width: 576px) {
+    padding: 15px;
+  }
+
   .foot {
     position: absolute;
     bottom: 32px;
@@ -983,8 +992,12 @@
       background: #FFFFFF;
       padding: 32px;
       border-radius: 30px;
-      -webkit-box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.66); 
+      -webkit-box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.66);
       box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.66);
+
+      @media only screen and (max-width: 576px) {
+        padding: 20px;
+      }
     }
 
     .user-info {

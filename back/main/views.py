@@ -234,25 +234,25 @@ class TestSubmitView(APIView):
             percentage = round(100 * len(answers) / questions_len)
             overall_ball = contest.grade_per_question * len(answers)
             # test
-            start_percent = 2
+            start_percent = 10
             end_percent = 30
-            additional_percent = 30
-            print('test_len: ', test_len, 'is_submitted: ', is_submitted, 'total: ', total, 'max: ', max)
+            additional_percent = 20
+            # print('test_len: ', test_len, 'is_submitted: ', is_submitted, 'total: ', total, 'max: ', max)
             if test_len == 1 and is_submitted == 0:
-                print('if -> 1: ', overall_ball, percentage)
+                # print('if -> 1: ', overall_ball, percentage)
                 if (percentage < end_percent and percentage > start_percent):
                     overall_ball += (additional_percent * (contest.grade_per_question * len(questions)))/100
                     percentage = round(percentage + additional_percent)
-                    print('success: ', overall_ball, percentage)
+                    # print('success: ', overall_ball, percentage)
             if (test_len == 2 and is_submitted == 1):
                 total += overall_ball
                 max += contest.grade_per_question * len(questions)
                 p = round((total / max) * 100, 2)
-                print('if -> 2: ', overall_ball, percentage, total, max, 'percent -> ', p, p < end_percent and p > start_percent)
+                # print('if -> 2: ', overall_ball, percentage, total, max, 'percent -> ', p, p < end_percent and p > start_percent)
                 if (p < end_percent and p > start_percent):
                     overall_ball += (additional_percent * max)/100
                     percentage = round((overall_ball * 100) / (contest.grade_per_question * len(questions)))
-                    print('success: ', overall_ball, percentage)
+                    # print('success: ', overall_ball, percentage)
             # test
             result.percentage = percentage
             result.overall_ball = round(overall_ball, 1)

@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-container w-65" style="rgba(166, 30, 77, .2) !important">
+  <div class="auth-container w-70" style="rgba(166, 30, 77, .2) !important">
     <div class="center-block">
       <img class="logo__university" src="/logo.png" alt="">
       <!-- <h1 class="text-center mb-4">TEST</h1> -->

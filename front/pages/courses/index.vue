@@ -36,7 +36,7 @@
                   class="d-flex align-items-center justify-content-between"
                 >
                   <span v-if="checkTestResult(test) && false" class="test_result">
-                    Test natijasi: 
+                    Test natijasi:
                     <template v-if="test.add_info.percentage">
                       ({{ test.add_info.percentage }} %)
                       ({{ test.add_info.overall_ball }} ball)
@@ -54,7 +54,7 @@
                   </nuxt-link>
                 </div>
               </div>
-              <div v-if="show_total && total" class="item d-flex align-items-center justify-content-around">
+              <div v-if="show_total && total" class="item d-flex align-items-center justify-content-around result__print">
                 <div v-if="total.percentage >= 30" class="h2 text-secondary">
                   Umumiy ball: {{ total.ball }}
                 </div>
@@ -62,9 +62,8 @@
                     Tabriklaymiz, Siz talabalikka tavsiya etildingiz!
                 </div>
                 <button class="btn btn-blue" @click="getPDF(user.id)">
-                    Chop etish
-                  </button>
-                
+                    Natijani chop etish
+                </button>
               </div>
               <div class="d-flex justify-content-end">
                 <b-pagination
@@ -206,7 +205,7 @@ export default {
 <style lang="scss" scoped>
 .heading {
   font-size: 30px;
-  margin: 40px 0 12px 0 !important;
+  margin: 0 0 12px 0 !important;
 }
 .test_error {
   background: #ce2525 !important;
@@ -293,6 +292,10 @@ export default {
       border-radius: 10px;
       -webkit-box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.31);
       box-shadow: 1px 2px 4px 0px rgba(0, 0, 0, 0.31);
+
+      @media only screen and (max-width: 576px) {
+        flex-wrap: wrap !important;
+      }
 
       p {
         max-width: initial;

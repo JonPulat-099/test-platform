@@ -2,7 +2,7 @@
   <div class="page test test-question">
     <div class="main-content">
       <div class="row" v-if="!loading">
-        <div class="col-md-8">
+        <div class="col-12 col-lg-8">
           <transition mode="out-in" name="fade">
             <div v-if="!testSubmitted && refreshTest" class="test-content">
               <div class="test-container">
@@ -59,8 +59,8 @@
                     class="balls correct"
                   >
                   {{ results.percentage }} %
-                    <br> 
-                    {{ results.overall_ball }} Ball                    <br> 
+                    <br>
+                    {{ results.overall_ball }} Ball                    <br>
                   </h4>
                   <p v-if="results.overall_ball >= 35"></p>
                   <span v-if="false">{{ questions.questions.length }} savoldan</span>
@@ -80,7 +80,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-12 col-lg-4">
           <div class="right-sidebar">
             <div
               v-if="!testSubmitted"
@@ -531,6 +531,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.test-question {
+  .main-content {
+    @media  only screen and (max-width: 991px) {
+    .row {
+        .col-lg-8 {
+          order: 2;
+        }
+        .col-lg-8 {
+          order: 1;
+        }
+      }
+    }
+  }
+}
 .answer-options {
   .item {
     height: calc(100% - 30px);

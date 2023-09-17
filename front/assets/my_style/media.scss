@@ -1,14 +1,14 @@
 @media (max-width: 1530px) {
-  .main .main-content.no-side-bar{
+  .main .main-content.no-side-bar {
     max-width: 90%;
   }
-  .main .status li:after{
+  .main .status li:after {
     width: 90px;
   }
 }
 
 @media (max-width: 1199px) {
-  .main .main-content.no-side-bar{
+  .main .main-content.no-side-bar {
     max-width: 100%;
   }
   .btn-blue {
@@ -33,24 +33,50 @@
 
 @media (max-width: 991px) {
   .page {
-    padding: 80px 16px 80px 16px;
+    padding: 20px 16px 20px 16px;
   }
-  .main .status li:after{    width: 96px;}
+  .main .status li:after {
+    width: 96px;
+  }
 }
 
 @media (max-width: 767px) {
-  .main .status{
+  .main .status {
     overflow: hidden;
-    li{
+    li {
       &:after {
         width: 190px;
       }
-      &:last-child{
+      &:last-child {
         &:after {
           background: $color-white;
           display: block;
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .result__print {
+    flex-direction: column !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .result__print {
+    .h2 {
+      font-size: 26px;
+      line-height: 1.2;
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .result__print {
+    .h2 {
+      font-size: 22px;
     }
   }
 }
