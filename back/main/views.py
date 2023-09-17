@@ -1,6 +1,7 @@
 from django.template.loader import render_to_string
 from django.utils.timezone import datetime, timedelta
 from django.utils import timezone
+import xlrd
 
 # Create your views here.
 from rest_auth.views import LoginView
@@ -10,7 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from main.models import BaseUser, Test, ConTest, UserTestAnswer, UserTestResult, Question, QuestionAnswer
+from main.models import BaseUser, Test, ConTest, UserTestAnswer, UserTestResult, Question, QuestionAnswer, UserGroup
 from main.pagination import CustomPagination
 from main.serializers import BaseUserSerializer, PasswordResetSerializer, UserConTestDetailSerializer, \
     UserTestAnswerSerializer, ConTestSerializer, UserTestResultSerializer, TestSerializer, UserTestAnswerSubmitSerializer
@@ -373,6 +374,33 @@ def generate_pdf(request, user_test_id):
     response['Content-Disposition'] = f'inline; filename={people.user.full_name}.pdf'
 
     return response
+
+class CreatUsers(APIView):
+    print('start')
+    def post(self, request):
+        if request.method == 'POST':
+            try:
+                file = request.FILES.get('file')
+                book = xlrd.open_workbook(file.name, file_contents=file.read())
+                sheet = book.sheets()[0]
+                for rx in range(1,sheet.nrows):
+                    row = sheet.row(rx)
+
+                    user = BaseUser.objects.create(
+                        first_name=row[1].value,
+                        last_name=row[2].value,
+                        middle_name=row[3].value,
+                        u_group=UserGroup.objects.get_or_create(name=str(row[4].value).strip())[0],
+                        username=row[6].value,
+                        is_student=True
+                    )
+                    user.set_password(row[7].value)
+                    user.save()
+                return Response({"message": "Foydalanuvchilar qo'shildi"}, status=status.HTTP_200_OK)
+            except Exception as e:
+                return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response({"message":  "No to`g`ri so`rov"}, status=status.HTTP_400_BAD_REQUEST)
+    
 
 def multi_generate_pdf(request, user_id):
     user = generics.get_object_or_404(BaseUser.objects.filter(id=user_id))

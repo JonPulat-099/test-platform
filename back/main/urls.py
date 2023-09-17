@@ -26,4 +26,5 @@ urlpatterns = [
     path('q-create/', views.QuestionsCreateApiView.as_view(), name='question_create'),
     path('pdf/<int:user_test_id>/', views.generate_pdf, name='generate_pdf'),
     path('multi-pdf/<int:user_id>/', views.multi_generate_pdf, name='multi_pdf'),
+    path('users/', views.CreatUsers.as_view(), name='user_create'),
 ]
