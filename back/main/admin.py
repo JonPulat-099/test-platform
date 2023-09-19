@@ -259,10 +259,36 @@ class UserTestAnswerAdmin(admin.TabularInline):
 
 
 class UserTestResultResource(resources.ModelResource):
+    def get_export_headers(self):
+        headers = super().get_export_headers()
+        for i, h in enumerate(headers):
+            if h == 'user__u_group__name':
+                headers[i] = "Yo'nalish nome"
+            if h == 'user__username':
+                headers[i] = "Login"
+            if h == 'overall_ball':
+                headers[i] = "To'plagan bali"
+            if h == 'percentage':
+                headers[i] = "Foiz"
+            if h == 'passed_date':
+                headers[i] = "Topshirilgan vaqt"
+            if h == 'due_time':
+                headers[i] = "Tugash vaqti"
+            if h == 'start_time':
+                headers[i] = "Boshlanish vaqti"
+            if h == 'contest__name':
+                headers[i] = "Test nomi"
+            if h == 'user__middle_name':
+                headers[i] = "Sharifi"
+            if h == 'user__last_name':
+                headers[i] = "Ismi"
+            if h == 'user__first_name':
+                headers[i] = "Familiya"
+        return headers
 
     class Meta:
-        fields = ('id', 'user__first_name','user__last_name', 'user__middle_name', 'contest__name', 'start_time', 'due_time', 'passed_date', 'ip_address', 'percentage','overall_ball')
-        export_order = ('id', 'user__first_name','user__last_name', 'user__middle_name', 'contest__name', 'start_time', 'due_time', 'passed_date', 'ip_address', 'percentage','overall_ball')
+        fields = ('id', 'user__first_name','user__last_name', 'user__middle_name', 'contest__name', 'start_time', 'due_time', 'passed_date', 'ip_address', 'percentage','overall_ball', 'user__username', 'user__u_group__name')
+        export_order = ('id', 'user__first_name','user__last_name', 'user__middle_name', 'contest__name', 'start_time', 'due_time', 'passed_date', 'ip_address', 'percentage','overall_ball', 'user__username', 'user__u_group__name')
         model = UserTestResult
 
 @admin.register(UserTestResult)
