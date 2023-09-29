@@ -1,7 +1,7 @@
 export const state = () => ({
   user: undefined,
   token: undefined,
-  error: "Логин ёки парол хато"
+  error: "Логин ёки парол хато",
 });
 
 export const actions = {
@@ -19,15 +19,15 @@ export const actions = {
           "login/",
           {
             username,
-            password
+            password,
           },
           {
             headers: {
-              Authorization: null
-            }
+              Authorization: null,
+            },
           }
         )
-        .then(response => {
+        .then((response) => {
           if (response.token) {
             const token = response.token;
             localStorage.setItem("token", token);
@@ -38,7 +38,7 @@ export const actions = {
           }
           resolve(response);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error);
         });
     });
@@ -48,27 +48,39 @@ export const actions = {
     return new Promise((resolve, reject) => {
       this.$axios
         .$get("profile/")
-        .then(response => {
+        .then((response) => {
           commit("SET_USER", response);
           resolve(response);
         })
-        .catch(error => {
+        .catch((error) => {
           reject(error);
         });
     });
   },
 
   LOGOUT({ commit }) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       this.$axios.get("logout/").finally(() => {
         localStorage.removeItem("token");
         delete this.$axios.defaults.headers.common.Authorization;
-        commit("SET_TOKEN", undefined);
+        try {
+          const cookies = document.cookie.split(";");
+          console.log(1, cookies);
+
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i];
+            const eqPos = cookie.indexOf("=");
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+          }
+        } catch (e) {
+          console.log(e);
+        }
         location.reload();
         resolve();
       });
     });
-  }
+  },
 };
 
 export const mutations = {
@@ -80,5 +92,5 @@ export const mutations = {
   },
   SET_USER(state, user) {
     state.user = user;
-  }
+  },
 };
